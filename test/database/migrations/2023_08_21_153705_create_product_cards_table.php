@@ -2,14 +2,25 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class ProductCard extends Model
+class CreateProductCardsTable extends Migration
 {
-    protected $fillable = ['name', 'article', 'retail_price'];
-
-    public function sourceItems()
+    public function up()
     {
-        return $this->hasMany(SourceItem::class);
+        Schema::create('product_cards', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('article');
+            $table->decimal('retail_price', 10, 2)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('product_cards');
     }
 }

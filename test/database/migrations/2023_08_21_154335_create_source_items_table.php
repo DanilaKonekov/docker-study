@@ -2,14 +2,26 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class SourceItem extends Model
+class CreateSourceItemsTable extends Migration
 {
-    protected $fillable = ['name', 'wholesale_price', 'retail_price', 'article'];
-
-    public function productCard()
+    public function up()
     {
-        return $this->belongsTo(ProductCard::class);
+        Schema::create('source_items', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->decimal('wholesale_price', 10, 2)->nullable();
+            $table->decimal('retail_price', 10, 2)->nullable();
+            $table->string('article');
+            $table->timestamps();
+        });
+    }
+
+    public function down()
+    {
+        Schema::dropIfExists('source_items');
     }
 }
