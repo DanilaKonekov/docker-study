@@ -5,7 +5,7 @@ namespace App\GraphQL\Types;
 use GraphQL\Type\Definition\Type;
 use Rebing\GraphQL\Support\Type as GraphQLType;
 
-class SourceItemType extends GraphQLType
+return new class extends GraphQLType
 {
     protected $attributes = [
         'name' => 'SourceItem',
@@ -23,4 +23,4 @@ class SourceItemType extends GraphQLType
             'product_card' => ['type' => GraphQL::type('ProductCard')],
         ];
     }
-}
+};

@@ -7,7 +7,7 @@ use App\Models\ProductCard;
 
 class ProductCardQuery
 {
-    public function productCards($rootValue, array $args)
+    public function products($rootValue, array $args)
     {
         return ProductCard::all();
     }
