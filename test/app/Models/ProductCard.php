@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-return new class extends Model
+class ProductCard extends Model
 {
     protected $fillable = ['name', 'article_number', 'retail_price'];
 
