@@ -2,16 +2,19 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\ProductCard;
 
 class ProductCardSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Запуск сидера.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
-        //
+        // Генерируем 10 карточек товаров
+        ProductCard::factory(10)->create();
     }
 }
