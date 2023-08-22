@@ -9,14 +9,14 @@ class ConcurrencyTableSeeder extends Seeder
 {
     public function run()
     {
+        // Создание записей конкурентности
         Concurrency::create([
-            'name' => 'Concurrency 1',
-            'value' => 10,
+            'product_card_id' => 1,
+            'concurrent_product_card_id' => 2,
+            'competitor_name' => 'Конкурент 1',
+            'price_difference' => 5.00,
         ]);
 
-        Concurrency::create([
-            'name' => 'Concurrency 2',
-            'value' => 15,
-        ]);
+        // Добавьте другие записи по необходимости
     }
 }

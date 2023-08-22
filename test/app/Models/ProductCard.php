@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductCard extends Model
 {
-    protected $fillable = ['name', 'article', 'retail_price'];
+    protected $fillable = ['name', 'article_number', 'retail_price'];
 
     public function sourceItems()
     {

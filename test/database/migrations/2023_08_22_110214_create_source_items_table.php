@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('source_items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->decimal('wholesale_price', 8, 2);
+            $table->decimal('opt_price', 8, 2);
             $table->decimal('retail_price', 8, 2);
             $table->string('article_number');
             $table->unsignedBigInteger('product_card_id');

@@ -32,7 +32,7 @@ Route::post('login/{user}/confirm', [LoginController::class, 'confirm'])->name('
 Route::resource('posts/{post}/comments', CommentController::class);
 
 
-
+Route::get('/product-cards', 'ProductCardController@index');
 
 
 //  должен быть в самом низу
