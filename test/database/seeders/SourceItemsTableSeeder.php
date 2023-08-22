@@ -9,11 +9,10 @@ class SourceItemsTableSeeder extends Seeder
 {
     public function run()
     {
-        // Создание элементов источника
         SourceItem::create([
             'name' => 'Элемент 1',
             'opt_price' => 5.99,
-            'retail_price' => 9.99,
+            'retail_price' => 4.99,
             'article_number' => '123456',
             'product_card_id' => 1,
         ]);
@@ -25,7 +24,5 @@ class SourceItemsTableSeeder extends Seeder
             'article_number' => '789012',
             'product_card_id' => 2,
         ]);
-
-        // Добавьте другие записи по необходимости
     }
 }

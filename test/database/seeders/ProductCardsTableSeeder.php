@@ -13,7 +13,7 @@ class ProductCardsTableSeeder extends Seeder
         ProductCard::create([
             'name' => 'Товар 1',
             'article_number' => '123456',
-            'retail_price' => 9.99,
+            'retail_price' => 5.99,
         ]);
 
         ProductCard::create([
