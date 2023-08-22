@@ -2,29 +2,41 @@
 
 namespace App\Console\Commands;
 
+use App\Models\ProductCard;
 use Illuminate\Console\Command;
 
-class ListProductCards extends Command
+return new class extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'app:list-product-cards';
+    protected $signature = 'product-cards:list';
+    protected $description = 'List all product cards';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
-
-    /**
-     * Execute the console command.
-     */
     public function handle()
     {
-        //
+        $headers = ['Name', 'Article Number', 'Wholesale Price', 'Retail Price'];
+
+        $productCards = ProductCard::with('sourceItems')->get();
+
+        $data = [];
+
+        foreach ($productCards as $productCard) {
+            $wholesalePrice = null;
+            $retailPrice = null;
+
+            foreach ($productCard->sourceItems as $sourceItem) {
+                if (is_null($wholesalePrice) || $sourceItem->opt_price < $wholesalePrice) {
+                    $wholesalePrice = $sourceItem->opt_price;
+                    $retailPrice = $sourceItem->retail_price;
+                }
+            }
+
+            $data[] = [
+                'Name' => $productCard->name,
+                'Article Number' => $productCard->article_number,
+                'Wholesale Price' => $wholesalePrice,
+                'Retail Price' => $retailPrice,
+            ];
+        }
+
+        $this->table($headers, $data);
     }
-}
+};
