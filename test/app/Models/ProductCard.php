@@ -10,6 +10,6 @@ class ProductCard extends Model
 
     public function sourceItems()
     {
-        return $this->hasMany(SourceItem::class, 'product_card_id');
+        return $this->hasMany(SourceItem::class, 'article_number', 'article_number');
     }
 };

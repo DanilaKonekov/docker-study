@@ -5,38 +5,34 @@ namespace App\Console\Commands;
 use App\Models\ProductCard;
 use Illuminate\Console\Command;
 
-return new class extends Command
+class ListProductCards extends Command
 {
     protected $signature = 'product-cards:list';
-    protected $description = 'List all product cards';
+
+    protected $description = 'Display a list of product cards';
 
     public function handle()
     {
-        $headers = ['Name', 'Article Number', 'Wholesale Price', 'Retail Price'];
+        $productCards = ProductCard::all();
 
-        $productCards = ProductCard::with('sourceItems')->get();
+        if ($productCards->isEmpty()) {
+            $this->info('No product cards found.');
+            return;
+        }
 
-        $data = [];
+        $headers = ['Title', 'Article', 'Wholesale Price', 'Retail Price'];
+        $rows = [];
 
         foreach ($productCards as $productCard) {
-            $wholesalePrice = null;
-            $retailPrice = null;
-
-            foreach ($productCard->sourceItems as $sourceItem) {
-                if (is_null($wholesalePrice) || $sourceItem->opt_price < $wholesalePrice) {
-                    $wholesalePrice = $sourceItem->opt_price;
-                    $retailPrice = $sourceItem->retail_price;
-                }
-            }
-
-            $data[] = [
-                'Name' => $productCard->name,
-                'Article Number' => $productCard->article_number,
-                'Wholesale Price' => $wholesalePrice,
-                'Retail Price' => $retailPrice,
+            $wholesalePrice = $productCard->sourceItem ? $productCard->sourceItem->wholesale_price : null;
+            $rows[] = [
+                $productCard->title,
+                $productCard->article,
+                $wholesalePrice,
+                $productCard->retail_price,
             ];
         }
 
-        $this->table($headers, $data);
+        $this->table($headers, $rows);
     }
-};
+}

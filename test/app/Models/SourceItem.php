@@ -10,6 +10,6 @@ class SourceItem extends Model
 
     public function productCard()
     {
-        return $this->belongsTo(ProductCard::class);
+        return $this->belongsTo(ProductCard::class, 'article_number', 'article_number');
     }
 };

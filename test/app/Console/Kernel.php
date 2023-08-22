@@ -5,6 +5,7 @@ namespace App\Console;
 use App\Models\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\ListProductCards;
 
 class Kernel extends ConsoleKernel
 {
@@ -25,5 +26,9 @@ class Kernel extends ConsoleKernel
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
+
+        $this->commands([
+           ListProductCards::class,
+        ]);
     }
 }
