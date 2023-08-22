@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('product_cards', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('article')->unique();
+            $table->string('article_number')->unique();
             $table->decimal('retail_price', 8, 2)->nullable();
             $table->timestamps();
         });
