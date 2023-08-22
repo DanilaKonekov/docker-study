@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ProductCardsTableSeeder::class);
         $this->call(SourceItemsTableSeeder::class);
-        $this->call(ConcurrencyTableSeeder::class);
+        $this->call(ConcurrencySeeder::class);
 
     }
 }
