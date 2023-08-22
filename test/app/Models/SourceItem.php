@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SourceItem extends Model
+return new class extends Model
 {
-    use HasFactory;
-}
+    protected $fillable = ['name', 'opt_price', 'retail_price', 'article_number', 'product_card_id'];
+
+    public function productCard()
+    {
+        return $this->belongsTo(ProductCard::class);
+    }
+};

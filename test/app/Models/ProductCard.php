@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductCard extends Model
+return new class extends Model
 {
-    use HasFactory;
-}
+    protected $fillable = ['name', 'article_number', 'retail_price'];
+
+    public function sourceItems()
+    {
+        return $this->hasMany(SourceItem::class, 'product_card_id');
+    }
+};
