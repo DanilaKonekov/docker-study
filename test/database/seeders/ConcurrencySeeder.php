@@ -25,6 +25,8 @@ class ConcurrencySeeder extends Seeder
                     $retailPrice = $sourceItem->retail_price;
                     if ($productCard->retail_price !== null) {
                         $retailPrice = $productCard->retail_price;
+                    } else {
+                        $retailPrice = 0.00;
                     }
 
                     $productCard->sourceItems()->attach($sourceItem, [

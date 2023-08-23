@@ -12,7 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('article_number');
-            $table->decimal('retail_price', 8, 2)->default(null);
+            $table->decimal('retail_price', 8, 2)->nullable()->default(null);
             $table->timestamps();
         });
     }
