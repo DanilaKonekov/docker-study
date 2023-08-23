@@ -21,7 +21,16 @@ class ProductCardsTableSeeder extends Seeder
             'article_number' => '789012',
             'retail_price' => 19.99,
         ]);
+        ProductCard::create([
+            'name' => 'Товар 3',
+            'article_number' => '345678',
+            'retail_price' => null,
+        ]);
 
-        // Добавьте другие записи по необходимости
+        ProductCard::create([
+            'name' => 'Товар 4',
+            'article_number' => '901234',
+            'retail_price' => 29.99,
+        ]);
     }
 }
