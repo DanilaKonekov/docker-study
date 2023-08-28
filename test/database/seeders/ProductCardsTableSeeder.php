@@ -10,7 +10,7 @@ class ProductCardsTableSeeder extends Seeder
     public function run()
     {
         // Создание карточек товаров
-/*        ProductCard::create([
+        ProductCard::create([
             'name' => 'Товар 1',
             'article_number' => '123456',
             'retail_price' => 5.99,
@@ -20,7 +20,7 @@ class ProductCardsTableSeeder extends Seeder
             'name' => 'Товар 2',
             'article_number' => '789012',
             'retail_price' => 19.99,
-        ]);*/
+        ]);
         ProductCard::create([
             'name' => 'Товар 3',
             'article_number' => '345678',

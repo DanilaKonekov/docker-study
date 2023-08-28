@@ -15,9 +15,13 @@
     <tbody>
     @foreach ($productCards as $productCard)
         <tr>
+            @php
+            $result = $productCard->calculatePrice();
+            @endphp
             <td>{{ $productCard->title }}</td>
             <td>{{ $productCard->article }}</td>
-            <td>{{ $productCard->retail_price }}</td>
+            <td>{{ $result['retail_price'] }}</td>
+            <td>{{ $result['opt_price'] }}</td>
         </tr>
     @endforeach
     </tbody>

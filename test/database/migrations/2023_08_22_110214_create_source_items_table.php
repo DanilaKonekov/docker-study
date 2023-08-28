@@ -12,12 +12,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->decimal('opt_price', 8, 2);
-            $table->decimal('retail_price', 8, 2)->nullable()->default(null);
-            $table->string('article_number');
-            $table->unsignedBigInteger('product_card_id');
+            $table->decimal('retail_price', 8, 2)->nullable();
             $table->timestamps();
-
-            $table->foreign('product_card_id')->references('id')->on('product_cards')->onDelete('cascade');
         });
     }
 

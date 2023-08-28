@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Concurrency;
 use Illuminate\Console\Command;
 use App\Models\ProductCard;
 use App\Models\SourceItem;
@@ -12,27 +13,21 @@ class ProductCardListCommand extends Command
 
     protected $description = 'Display a list of product cards with prices';
 
-    public function handle()
+    public function handle(): int
     {
         $productCards = ProductCard::with('sourceItems')->get();
 
+        /** @var ProductCard $productCard */
         foreach ($productCards as $productCard) {
-            $this->info("Product Card: {$productCard->name} (Article: {$productCard->article_number})");
-            $this->line('----------------------------------');
-            $this->line('Source Items:');
 
-            foreach ($productCard->sourceItems as $sourceItem) {
-                $wholesalePrice = $sourceItem->pivot->wholesale_price;
-                $retailPrice = $sourceItem->pivot->retail_price;
 
-                $this->line(" - Name: {$sourceItem->name}");
-                $this->line("   Article: {$sourceItem->article_number}");
-                $this->line("   Wholesale Price: {$wholesalePrice}");
-                $this->line("   Retail Price: {$retailPrice}");
-                $this->line('----------------------------------');
-            }
+            $result = $productCard->calculatePrice();
+
+            $this->info("Product Card: {$productCard->name} (Article: {$productCard->article_number}) Price opt: {$result['opt_price']} Price ret: {$result['retail_price']}" );
 
             $this->line('');
         }
+
+        return self::SUCCESS;
     }
 }

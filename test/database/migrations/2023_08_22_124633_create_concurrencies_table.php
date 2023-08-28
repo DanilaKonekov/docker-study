@@ -12,9 +12,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('product_card_id');
             $table->unsignedBigInteger('source_item_id');
-            $table->decimal('wholesale_price', 8, 2);
-            $table->decimal('retail_price', 8, 2);
-            $table->timestamps();
 
             $table->foreign('product_card_id')->references('id')->on('product_cards')->onDelete('cascade');
             $table->foreign('source_item_id')->references('id')->on('source_items')->onDelete('cascade');
